@@ -1,0 +1,18 @@
+<div class="container" style="display: flex; justify-content: center; height: 100vh;">
+  <div class="login-wrapper">
+    <form #loginForm="ngForm" autocomplete="off" class="login-form" (ngSubmit)="fazerLogin()">
+      <div class="mb-3" style="text-align: center;">
+        <h1 style="margin: 0;">Login</h1>
+      </div>
+      <div class="mb-3 p-fluid max-col-12">
+        <input type="email" pInputText [(ngModel)]="usuario" name="usuario" placeholder="Usuário" required/>
+      </div>
+      <div class="mb-3 p-fluid max-col-12">
+        <p-password [toggleMask]="true" [(ngModel)]="senha" name="senha" placeholder="Senha" required />
+      </div>
+      <div class="p-fluid max-col-12 mb-3" style="text-align: center;">
+        <p-button label="Entrar" type="submit" [disabled]="!loginForm.valid" />
+      </div>
+    </form>
+  </div>
+</div>

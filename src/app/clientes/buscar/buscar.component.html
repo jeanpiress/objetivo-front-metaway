@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="p-grid">
+    <form autocomplete="off" (ngSubmit)="pesquisar()">
+      <div class="mb-3">
+        <h1>Clientes</h1>
+      </div>
+
+      <div class="p-fluid mb-3">
+        <label class="p-mb-2">Buscar cliente</label>
+        <input type="text" pInputText class="p-mt-2" name="nomeBusca" [(ngModel)]="nomeBusca" placeholder="Nome do Cliente"/>
+      </div>
+
+      <div class="mb-3">
+        <p-button label="Buscar" type="submit"/>
+      </div>
+
+      <div class="p-grid">
+        <div class="mb-3">
+          <p-table [value]="clientes" styleClass="p-datatable-striped" [tableStyle]="{ 'min-width': '50rem' }" responsiveLayout="stack"
+          [breakpoint]="'960px'">
+            <ng-template pTemplate="header">
+              <tr>
+                <th  class="center-column">Id</th>
+                <th  class="center-column">Nome</th>
+                <th  class="center-column">Cpf</th>
+                <th  class="center-column">Data cadastro</th>
+                <th class="button-column"></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-cliente>
+              <tr>
+                <td  class="center-column">{{ cliente.id }}</td>
+                <td  class="center-column">{{ cliente.nome}}</td>
+                <td  class="center-column">{{ cliente.cpf}}</td>
+                <td  class="center-column">{{ cliente.dataCadastro | date: 'dd/MM/yyyy' }}</td>
+                <td class="button-column">
+                  <p-button icon="pi pi-user-edit" class="button-spacing" pTooltip="Editar" tooltipPosition="top"
+                  (click)="editarCliente(cliente)"></p-button>
+                  <p-button icon="pi pi-trash" class="button-spacing" pTooltip="Deletar" tooltipPosition="top"
+                  (click)="confirmarExclusao(cliente)" [disabled]="!auth.temPermissao('ADMIN')"></p-button>
+                </td>
+
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </form>
+
+    <div class="mb-3">
+      <p-button label="Novo Cliente" (click)="novoCliente()"/>
+    </div>
+    <app-novo-cliente [(display)]="displayNovoCliente" ></app-novo-cliente>
+    <app-editar-cliente *ngIf="selectedCliente" [cliente]="selectedCliente" [(display)]="displayEditar"></app-editar-cliente>
+  </div>
+</div>

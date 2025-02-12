@@ -1,0 +1,21 @@
+.button-column {
+  width: 150px;
+  flex-direction: row;
+  padding: 0 !important;
+}
+
+.center-column{
+  text-align: center !important;
+}
+
+@media (max-width: 960px) {
+  .button-column {
+    width: auto;
+    padding: 0 !important;
+  }
+
+  .button-spacing {
+    margin: 2px !important; /* Ajusta o espaçamento entre botões em telas menores */
+  }
+}
+

@@ -1,0 +1,25 @@
+<p-dialog header="Editar Cliente" [(visible)]="display" [modal]="true" [closable]="true"
+  [style]="{ 'width': '85vw', 'max-width': '500px', 'max-height': '400px', 'height': '95vh' }">
+
+  <form #clienteForm="ngForm">
+    <div class="p-grid">
+      <div class="p-grid">
+        <div class="p-fluid mb-3">
+          <label>Nome</label>
+          <input type="text" pInputText name="nome"
+          [(ngModel)]="cliente.nome" required>
+        </div>
+        <div class="p-fluid mb-3">
+          <label>Cpf</label>
+          <input type="text" pInputText name="cpf"
+          [(ngModel)]="cliente.cpf" maxlength="11">
+        </div>
+      </div>
+      <div>
+        <p-button class="button-spacing" label="Editar"
+          [disabled]="!clienteForm.valid" (click)="salvar()" />
+      </div>
+    </div>
+  </form>
+
+</p-dialog>

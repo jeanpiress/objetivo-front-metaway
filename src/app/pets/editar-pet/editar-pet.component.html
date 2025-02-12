@@ -1,0 +1,40 @@
+<p-dialog header="Novo Pet" [(visible)]="display" [modal]="true" [closable]="true"
+  [style]="{ 'width': '85vw', 'max-width': '500px', 'max-height': '600px', 'height': '95vh' }" >
+  <form autocomplete="off" #petForm="ngForm">
+    <div class="p-grid">
+
+      <div class="p-grid">
+        <div class="p-fluid mb-3">
+          <label>Nome do Pet</label>
+          <input type="text" pInputText name="nome"
+          [(ngModel)]="pet.nome" required>
+        </div>
+        <div class="p-fluid mb-3">
+          <label>Nome do Tutor</label>
+          <input type="text" pInputText name="tutor" [(ngModel)]="nomeTutor" (ngModelChange)="carregarClientes()" required />
+        </div>
+        <div class="p-fluid mb-3">
+          <label for="clienteDropdown">Selecione o Tutor</label>
+          <p-dropdown [options]="clientes" [(ngModel)]="clienteSelecionado" name="cliente" required></p-dropdown>
+        </div>
+        <div class="p-grid">
+          <div class="p-fluid mb-3">
+            <label>Raça Id</label>
+            <p-inputNumber pInputNumber name="racaId" [(ngModel)]="pet.raca.id" required/>
+          </div>
+        </div>
+        <div class="p-grid">
+          <div class="p-fluid mb-3">
+            <label>Data Nascimento</label>
+            <input type="date" pInputText name="dataNascimento"
+            [(ngModel)]="pet.dataNascimento">
+          </div>
+        </div>
+        <div>
+          <p-button class="button-spacing" label="Editar" [disabled]="!petForm.valid" (click)="salvar()"/>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</p-dialog>
