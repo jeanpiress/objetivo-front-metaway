@@ -6,6 +6,7 @@ import { Pet, PetInput } from '../../core/model';
 import { NotificationService } from '../../core/notification.service';
 import { ClienteService } from '../../clientes/cliente.service';
 import { map } from 'rxjs';
+import { AuthService } from '../../seguranca/auth.service';
 
 @Component({
   selector: 'app-editar-pet',
@@ -28,7 +29,8 @@ export class EditarPetComponent implements OnChanges{
     private petService: PetService,
     private notificationService: NotificationService,
     private errorHandler: ErrorHandlerService,
-    private clienteService: ClienteService
+    private clienteService: ClienteService,
+    public auth: AuthService
   ){}
 
   ngOnChanges(changes: SimpleChanges) {
@@ -60,7 +62,7 @@ export class EditarPetComponent implements OnChanges{
 
   montarPetInput(){
     this.petInput.nome = this.pet.nome;
-    this.petInput.Cliente.id = this.pet.cliente.id;
+    this.petInput.cliente.id = this.clienteSelecionado;
     this.petInput.raca.id = this.pet.raca.id;
     this.petInput.dataNascimento = this.pet.dataNascimento;
   }

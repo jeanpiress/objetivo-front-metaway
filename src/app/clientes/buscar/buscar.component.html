@@ -48,7 +48,7 @@
     </form>
 
     <div class="mb-3">
-      <p-button label="Novo Cliente" (click)="novoCliente()"/>
+      <p-button *ngIf="auth.temPermissao('ADMIN')" label="Novo Cliente" (click)="novoCliente()"/>
     </div>
     <app-novo-cliente [(display)]="displayNovoCliente" ></app-novo-cliente>
     <app-editar-cliente *ngIf="selectedCliente" [cliente]="selectedCliente" [(display)]="displayEditar"></app-editar-cliente>

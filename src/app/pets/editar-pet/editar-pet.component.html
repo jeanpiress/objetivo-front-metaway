@@ -1,4 +1,4 @@
-<p-dialog header="Novo Pet" [(visible)]="display" [modal]="true" [closable]="true"
+<p-dialog header="Editar Pet" [(visible)]="display" [modal]="true" [closable]="true"
   [style]="{ 'width': '85vw', 'max-width': '500px', 'max-height': '600px', 'height': '95vh' }" >
   <form autocomplete="off" #petForm="ngForm">
     <div class="p-grid">
@@ -9,11 +9,11 @@
           <input type="text" pInputText name="nome"
           [(ngModel)]="pet.nome" required>
         </div>
-        <div class="p-fluid mb-3">
+        <div *ngIf="auth.temPermissao('ADMIN')" class="p-fluid mb-3">
           <label>Nome do Tutor</label>
-          <input type="text" pInputText name="tutor" [(ngModel)]="nomeTutor" (ngModelChange)="carregarClientes()" required />
+          <input type="text" pInputText name="tutor" [(ngModel)]="nomeTutor" (ngModelChange)="carregarClientes()" />
         </div>
-        <div class="p-fluid mb-3">
+        <div *ngIf="auth.temPermissao('ADMIN')" class="p-fluid mb-3">
           <label for="clienteDropdown">Selecione o Tutor</label>
           <p-dropdown [options]="clientes" [(ngModel)]="clienteSelecionado" name="cliente" required></p-dropdown>
         </div>
